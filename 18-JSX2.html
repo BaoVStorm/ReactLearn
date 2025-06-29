@@ -1,0 +1,98 @@
+<!-- 
+    nói sâu hơn về JSX
+        trong JSX - Babel. Nếu muốn dùng DOM-event thì phải theo format ghi thường chữ đầu và ghi Hoa chữ sau
+
+    Ý 2: Tạo 1 Object trong đó sẽ có những function (Babel). Dễ dàng gọi lại được trong JSX
+        Quy ước đặt tên component: Chữ đầu phải ghi hoa
+    
+    Ý 3: Tạo 1 thẻ linh hoạt với đầu vào
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS</title>
+    
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>     
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- JSX - Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+   
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const rootContainer = document.getElementById("root");
+
+        var root = ReactDOM.createRoot(rootContainer);
+
+        // -------------------------------- Ý 2 -------------------------------
+
+        // Object
+        const Form = {
+            Input() {
+                return <input/>
+            },
+            CheckBox() {
+                return <input type='CheckBox'/>
+            }
+        }
+
+        function App2({type}) {
+            var Component = Form[type];
+
+            return (
+                <div className='wrapper'>
+                    <Component/>
+                </div>
+            );
+        }
+
+        root.render(<App2 type='CheckBox'/>)
+
+        // -------------------------------- Ý 3 -------------------------------
+
+        const Tag = ({title, href, onClick}) => {
+            let Component = "button";
+
+            let props = {};
+
+            if(href) {
+                Component = "a";
+                props.href = href;
+            }
+
+            if(onClick)
+                props.onClick = onClick;
+
+            return (
+                <Component {...props}>{title}</Component>
+            );
+        };
+
+        function App3() {
+            return (
+                <div className="wrapper">
+                    <Tag
+                        title='Click Me!!'
+                        href='https://www.youtube.com/'
+                        onClick = {()=> console.log(Math.random())}
+                    />
+                </div>
+            );
+        }
+
+        root.render(<App3/>)
+
+    </script>
+
+
+</body>
+</html>

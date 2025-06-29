@@ -1,0 +1,137 @@
+<!-- có gì
+    JSX - babel
+
+    React
+    ReactDOM
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS</title>
+    
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>     
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- JSX - Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+   
+<body>
+    <div id="root"></div>
+    <br>
+    <br>
+    <br>
+    <div id="container"></div>
+
+
+    <script type="text/babel">
+        // Function (Ghi hoa ở đầu) - Class
+        function Header() {
+            return <h1>Header</h1>;
+        }
+
+        class Footer extends React.Component {
+            render() {
+                return (
+                    <h2 className='Footer'>Footer</h2>
+                )
+            }
+        }
+
+        // --------
+
+        // DOM
+        const rootContainer = document.getElementById("root");
+
+        // REACT-DOM
+        var root = ReactDOM.createRoot(rootContainer);
+
+        // REACT
+        const contentBabel = (
+            <ul>
+                <Header/>
+                <li>New Content</li>
+                <Footer/>
+            </ul>
+        );
+
+        root.render(contentBabel);
+
+        // ----------------- example
+
+        const Con = document.getElementById("container");
+
+        var container = ReactDOM.createRoot(Con);
+
+        const posts = [{
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title1',
+                desc: 'description1',
+                date: '1 day'
+            }, {
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title2',
+                desc: 'description2',
+                date: '2 days'
+            }, {
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title3',
+                desc: 'description3',
+                date: '3 days'
+            }, {
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title3',
+                desc: 'description3',
+                date: '3 days'
+            }
+        ];
+
+        function PostItem(obj) {
+            return (
+                <div className="posts-item">
+                    <img src={obj.img} alt="img"/>
+                    <h2 className="post-title">{obj.title}</h2>
+                    <p className="post-desc">{obj.desc}</p>
+                    <p className="post-published">{obj.date}</p>
+                </div>
+            );
+        }
+
+        function PostItem2() {
+            var obj = "asdf";
+            return (
+                <div className="posts-item">
+                    asdasd
+                    <img src="" alt="img"/>
+                    <h2 className="post-title">{obj}</h2>
+                    <p className="post-desc">{obj}</p>
+                    <p className="post-published">{obj}</p>
+                </div>
+            );
+        }
+
+        var PostsList = (
+            <div className="posts-list">
+                <PostItem2/>
+                <PostItem2/>
+
+                
+            </div>  
+        )
+
+        container.render(PostsList);
+
+    </script>
+
+    
+    
+</body>
+
+
+
+</html>

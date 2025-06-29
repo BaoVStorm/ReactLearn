@@ -1,0 +1,130 @@
+<!-- 
+    Ý 4
+
+    Props trong JSX
+        - <YourComponent
+            propName1="String literals"
+            propName2={expression hay Biểu thức}    
+        />
+
+        - props default to "true"
+        - Spread/Rest props ***
+        - Children prop ****
+            - <YourComponent> String literals </YourComponent>
+            - <YourComponent> {expression} </YourComponent>
+        - Render props
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS</title>
+    
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>     
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- JSX - Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+   
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const rootContainer = document.getElementById("root");
+
+        var root = ReactDOM.createRoot(rootContainer);
+
+        // ** Spread/Rest props
+
+        function Input({label, ...props}) {
+            return (  
+                <div className='inputBox'>
+                    <label>{label}</label>
+                    <input {...props} type="text"/>
+                </div>
+            );
+        }
+
+        function App() {
+            return (
+                <div className = "wrapper">
+                    <Input
+                        label="label Text"
+                        placeholder="Nhập placeholder"
+                        onClick = {()=>{console.log(Math.random())}}
+                    />
+                </div>
+            );
+        }
+
+        root.render(<App/>)
+
+        //  ** Children prop **
+
+        const cars = ["honda", "lamborghini", "ferrari"];
+
+        function List2({data, children}) {
+            return (
+                <ul>
+                    {
+                        data.map(d=> {
+                            return (
+                                <li>{d} {children}</li>
+                            )
+                        })
+                    }
+                </ul>
+            );
+        }
+
+        function App2() {
+            return (
+                <div className="wrapper">
+                    <List2 data={cars}>
+                        again!!!
+                    </List2>
+                </div>                
+            );
+        }
+
+        root.render(<App2/>)
+
+        //  ** Render props **
+
+        function List3({data, children}) {
+            return (
+                <ul>
+                    {
+                        data.map((d, index) => children(d,index))
+                    }
+                </ul>
+            );
+        }
+
+        function App3() {
+            return (
+                <div className="wrapper">
+                    <List3 data={cars}>
+                        {(item, index) => (
+                            <li key={index}>{item}</li>
+                        )}
+                    </List3>
+                </div>                
+            );
+        }
+
+        root.render(<App3/>)
+
+    </script>
+
+
+    
+
+</body>
+</html>

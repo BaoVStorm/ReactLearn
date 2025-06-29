@@ -1,0 +1,115 @@
+<!-- có gì
+    JSX - babel
+
+    React
+    ReactDOM
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS</title>
+    
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>     
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- JSX - Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+   
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // target:
+        // <div class="post-item">
+        //     <h2 title="Hocj React taij F8">Học ReactJS</h2>
+        //     <p>Học ReactJS từ cơ bản tới nâng cao</p>
+        // </div>
+
+        // ----------------------------------------- 
+
+        // React
+        // var postItem = React.createElement('div', {
+        //         className: 'post-item'
+        //     },
+        //     React.createElement('h2', {
+        //             title: "Học React tại F8"
+        //         }, "Học ReactJS"),
+        //     React.createElement('p', null, "Học ReactJS từ vơ bản tới nâng cao")
+        // );
+
+        // JSX - babel
+        var postItem = <div className="post-item">
+            <h2 title="Hocj React taij F8">Học ReactJS</h2>
+            <p>Học ReactJS từ cơ bản tới nâng cao</p>
+        </div>
+
+        // ----------------------------------------- 
+
+        // DOM 
+        const rootContainer = document.getElementById("root");
+
+        // React_DOM | React@17
+        // ReactDOM.render(postItem, root)
+
+        // React_Dom | React@18
+        const rootReact = ReactDOM.createRoot(rootContainer)
+        rootReact.render(postItem);
+
+        // ----------------- array
+
+        const course = [
+            {
+                name: 'HTML, CSS'
+            }, {
+                name: 'Responsive web design'
+            }, {
+                name: 'ReactJS'
+            }
+        ];
+
+
+        var courseBabel = (
+            <ul>
+            {
+                course.map((v, index)=>{
+                    return <li key={index}>{v.name}</li>;
+                })
+            }
+        </ul>
+        )
+
+        rootReact.render(courseBabel);
+
+        // -------------------------------
+
+        const element1 = (
+            <React.Fragment>
+                <h1>Header1</h1>
+                <h2>Header2</h2>
+            </React.Fragment>
+        );
+
+        const groupBody = React.createElement(
+            React.Fragment,
+            null,
+            [courseBabel,
+            element1]
+        );
+
+        rootReact.render(groupBody);
+
+    </script>
+
+    
+</body>
+
+
+
+</html>

@@ -1,0 +1,94 @@
+<!-- 
+    nói sâu hơn về JSX
+        trong JSX - Babel. Nếu muốn dùng DOM-event thì phải theo format ghi thường chữ đầu và ghi Hoa chữ sau
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS</title>
+    
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>     
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- JSX - Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+   
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const rootContainer = document.getElementById("root");
+
+        var root = ReactDOM.createRoot(rootContainer);
+         
+        // ------------------------------------ 
+
+        function PostItemWithProps({props, onClick}) {
+            return (
+                <div className="posts-item">
+                    <img src={props.img} alt="img"/>
+                    <h1 className="post-title" onClick={() => onClick(props)}>{props.title}</h1>
+                    <p className="post-desc">{props.desc}</p>
+                    <p className="post-published">{props.date}</p>
+                </div>
+            );       
+        }
+
+        const posts = [{
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title1',
+                desc: 'description1',
+                date: '1 day'
+            }, {
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title2',
+                desc: 'description2',
+                date: '2 days'
+            }, {
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title3',
+                desc: 'description3',
+                date: '3 days'
+            }, {
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1DemQdAPhyCuLBMoSNwVteTQMuSUJzuH5g&s',
+                title: 'title3',
+                desc: 'description3',
+                date: '3 days'
+            }
+        ];
+
+        function App() {
+            const handleClick = (props) => {
+                console.log(props.title);
+            };
+
+            return (
+                <div className='wrapper'>
+                    {
+                        posts.map((post, index) => (
+                            <PostItemWithProps
+                                key = {index}
+                                props = {post}
+                                onClick = {handleClick}
+                            /> 
+                        ))
+                    }
+                </div>
+            );
+        }
+
+        root.render(<App/>);
+
+
+    </script>
+
+
+</body>
+</html>

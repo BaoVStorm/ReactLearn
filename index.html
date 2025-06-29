@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJS</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script> 
+    
+    <!-- <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script> -->
+
+</head>
+
+
+<body>
+    <h1>ReactJS</h1>
+
+    <div id="root"></div>
+
+    <script>
+        // target:
+            // <h1 title="Hello" class='heading'>Hello guys!</h1>
+
+
+        // DOM
+        const root = document.getElementById("root");
+
+        const element = document.createElement("h1");
+        element.className = "heading";
+        element.title = "Hello"
+        element.innerText = "Hello guys!";
+ 
+        root.appendChild(element);
+
+        // React -> React-DOM
+        // React.createElement(type, props, children, n);
+
+        const h1React = React.createElement("h1", {
+            title: "Hello",
+            className: "heading"
+        },
+        "Hello guys!"
+        );
+
+        console.dir(element);
+        console.log(h1React);
+        
+        // -------------------------------------------------------
+        // Target:
+            // <ul>
+            //     <li>JavaScript</li>
+            //     <li>ReactJS</li>
+            // </ul>
+
+        // DOM
+        var ul = document.createElement("ul");
+        var li1 = document.createElement("li");
+        li1.innerText = "JavaScript";
+
+        var li2 = document.createElement("li");
+        li2.innerText = "ReactJS";
+
+        ul.appendChild(li1);
+        ul.appendChild(li2);
+
+        document.body.appendChild(ul);
+
+        // React
+  
+        const reactUL = React.createElement(
+            'li', 
+            null,
+            React.createElement('li', null, 'JavaScript'),
+            React.createElement('li', null, 'ReactJS')
+        );
+        
+
+    </script>
+</body>
+</html>
